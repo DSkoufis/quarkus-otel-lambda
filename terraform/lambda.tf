@@ -7,9 +7,7 @@ resource "aws_lambda_function" "native_lambda_function" {
   source_code_hash = filebase64sha256(var.lambda_file_path)
 
   runtime = "provided.al2"
-  handler = "not.used.in.provided.runtime"
-  #  runtime = "java17"
-  #  handler = "io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler::handleRequest"
+  handler = "io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler::handleRequest"
 
   architectures = [var.lambda_architecture]
 
@@ -17,7 +15,7 @@ resource "aws_lambda_function" "native_lambda_function" {
   timeout     = var.lambda_timeout
 
 #  layers = [
-#    "arn:aws:lambda:${var.aws_region}:901920570463:layer:aws-otel-java-agent-${var.lambda_architecture}-ver-1-32-0:1"
+#    "arn:aws:lambda:${var.aws_region}:${var.account_no}:layer:aws-otel-java-agent-${var.lambda_architecture}-ver-1-32-0:1"
 #  ]
 
   tracing_config {
@@ -33,7 +31,7 @@ resource "aws_lambda_function" "native_lambda_function" {
   }
 
   vpc_config {
-    subnet_ids = local.subnets
+    subnet_ids         = local.subnets
     security_group_ids = [local.security_groups]
   }
 
