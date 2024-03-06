@@ -3,7 +3,8 @@ package org.acme.opentelemetry.lambda;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-import io.opentelemetry.instrumentation.annotations.WithSpan;
+import org.acme.opentelemetry.lambda.spans.WithXraySubsegment;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -16,10 +17,10 @@ public class LambdaHandler implements RequestHandler<Request, Response> {
   LambdaService service;
 
   @Override
-  @WithSpan
+  @WithXraySubsegment
   public Response handleRequest(Request request, Context context) {
-    service.handleRequest(request.getId());
-    service.addDelay();
+    service.sameSpan(request.getId());
+    service.startDifferentSpan("test arg", "test 2");
     return new Response("ok");
   }
 }

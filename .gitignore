@@ -12,7 +12,7 @@ target/
 *.iml
 *.ipr
 
-.terraform
+.terraform*
 *.lock.hcl
 tm-nonprod
 modules.tf

@@ -40,19 +40,24 @@
 
   <dependencies>
     <!-- OTel -->
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-opentelemetry</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.opentelemetry</groupId>
-      <artifactId>opentelemetry-extension-aws</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.opentelemetry.contrib</groupId>
-      <artifactId>opentelemetry-aws-xray-propagator</artifactId>
-      <version>1.32.0-alpha</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>io.quarkus</groupId>-->
+<!--      <artifactId>quarkus-opentelemetry</artifactId>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>io.opentelemetry.contrib</groupId>-->
+<!--      <artifactId>opentelemetry-aws-xray-propagator</artifactId>-->
+<!--      <version>1.32.0-alpha</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>io.opentelemetry</groupId>-->
+<!--      <artifactId>opentelemetry-extension-aws</artifactId>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>io.opentelemetry.instrumentation</groupId>-->
+<!--      <artifactId>opentelemetry-aws-lambda-core-1.0</artifactId>-->
+<!--    </dependency>-->
+
 
     <!-- AWS Lambda -->
     <dependency>

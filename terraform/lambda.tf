@@ -7,16 +7,20 @@ resource "aws_lambda_function" "native_lambda_function" {
   source_code_hash = filebase64sha256(var.lambda_file_path)
 
   runtime = "provided.al2"
-  handler = "io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler::handleRequest"
+#  runtime = "java17"
+#  handler = "io.opentelemetry.instrumentation.awslambdacore.v1_0.TracingRequestStreamWrapper::handleRequest"
+  handler = "blah.blah.blah"
+#  handler = "io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler::handleRequest"
 
   architectures = [var.lambda_architecture]
 
   memory_size = var.lambda_memory_size
   timeout     = var.lambda_timeout
 
-#  layers = [
-#    "arn:aws:lambda:${var.aws_region}:${var.account_no}:layer:aws-otel-java-agent-${var.lambda_architecture}-ver-1-32-0:1"
-#  ]
+  layers = [
+#    "arn:aws:lambda:${var.aws_region}:901920570463:layer:aws-otel-java-wrapper-${var.lambda_architecture}-ver-1-32-0:1"
+    "arn:aws:lambda:${var.aws_region}:901920570463:layer:aws-otel-java-agent-${var.lambda_architecture}-ver-1-32-0:1"
+  ]
 
   tracing_config {
     mode = "Active"
@@ -24,9 +28,12 @@ resource "aws_lambda_function" "native_lambda_function" {
 
   environment {
     variables = {
-      DISABLE_SIGNAL_HANDLERS = true
+#      DISABLE_SIGNAL_HANDLERS = true
+      AWS_LAMBDA_EXEC_WRAPPER = "/opt/otel-stream-handler"
       QUARKUS_BANNER_ENABLED  = false
-#      AWS_LAMBDA_EXEC_WRAPPER = "/opt/otel-handler"
+#      OTEL_INSTRUMENTATION_AWS_LAMBDA_HANDLER = "io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler::handleRequest"
+#      OTEL_INSTRUMENTATION_AWS_LAMBDA_FLUSH_TIMEOUT = 100
+#      OPENTELEMETRY_COLLECTOR_CONFIG_FILE = "/var/task/collector.yaml"
     }
   }
 
