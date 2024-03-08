@@ -2,6 +2,13 @@ The Quarkus app makes use of the [`quarkus-amazon-lambda`](https://quarkus.io/gu
 
 The handler is: [`LambdaHandler`](src/main/java/org/acme/opentelemetry/lambda/LambdaHandler.java)
 
+To build the app:
+```shell
+mvn clean package -Dnative -DskipUnitTests \
+  -Dquarkus.native.container-build=true \
+  -Dquarkus.native.builder-image=quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-17
+```
+
 A terraform module is provided to build the lambda, although many variables are kept private as they are using private resources/modules. It should be
 easy to reconfigure and deploy the example. All missing variables are set as tf `locals`
 
