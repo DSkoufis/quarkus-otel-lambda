@@ -40,15 +40,15 @@
 
   <dependencies>
     <!-- OTel -->
-<!--    <dependency>-->
-<!--      <groupId>io.quarkus</groupId>-->
-<!--      <artifactId>quarkus-opentelemetry</artifactId>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>io.opentelemetry.contrib</groupId>-->
-<!--      <artifactId>opentelemetry-aws-xray-propagator</artifactId>-->
-<!--      <version>1.32.0-alpha</version>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-opentelemetry</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.opentelemetry.contrib</groupId>
+      <artifactId>opentelemetry-aws-xray-propagator</artifactId>
+      <version>1.32.0-alpha</version>
+    </dependency>
 <!--    <dependency>-->
 <!--      <groupId>io.opentelemetry</groupId>-->
 <!--      <artifactId>opentelemetry-extension-aws</artifactId>-->
@@ -64,10 +64,10 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-amazon-lambda</artifactId>
     </dependency>
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-amazon-lambda-xray</artifactId>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>io.quarkus</groupId>-->
+<!--      <artifactId>quarkus-amazon-lambda-xray</artifactId>-->
+<!--    </dependency>-->
 
     <!-- Tests -->
     <dependency>

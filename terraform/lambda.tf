@@ -6,11 +6,11 @@ resource "aws_lambda_function" "native_lambda_function" {
   filename         = var.lambda_file_path
   source_code_hash = filebase64sha256(var.lambda_file_path)
 
-  runtime = "provided.al2"
 #  runtime = "java17"
 #  handler = "io.opentelemetry.instrumentation.awslambdacore.v1_0.TracingRequestStreamWrapper::handleRequest"
-  handler = "blah.blah.blah"
 #  handler = "io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler::handleRequest"
+  runtime = "provided.al2"
+  handler = "not.used.at.all.in.provided.runtime"
 
   architectures = [var.lambda_architecture]
 
@@ -28,12 +28,13 @@ resource "aws_lambda_function" "native_lambda_function" {
 
   environment {
     variables = {
-#      DISABLE_SIGNAL_HANDLERS = true
-      AWS_LAMBDA_EXEC_WRAPPER = "/opt/otel-stream-handler"
+      DISABLE_SIGNAL_HANDLERS = true
       QUARKUS_BANNER_ENABLED  = false
+#      AWS_LAMBDA_EXEC_WRAPPER = "/opt/otel-stream-handler"
+      AWS_LAMBDA_EXEC_WRAPPER = "/opt/otel-handler"
+#      OPENTELEMETRY_COLLECTOR_CONFIG_FILE = "/var/task/collector.yaml"
 #      OTEL_INSTRUMENTATION_AWS_LAMBDA_HANDLER = "io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler::handleRequest"
 #      OTEL_INSTRUMENTATION_AWS_LAMBDA_FLUSH_TIMEOUT = 100
-#      OPENTELEMETRY_COLLECTOR_CONFIG_FILE = "/var/task/collector.yaml"
     }
   }
 
