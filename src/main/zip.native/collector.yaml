@@ -15,6 +15,7 @@ receivers:
         endpoint: "localhost:4318"
 
 exporters:
+  awsxray:
   otlp:
     # NOTE: if you are using private satellites, replace this public
     # endpoint with the address of your satellite load balancer.
@@ -30,4 +31,4 @@ service:
   pipelines:
     traces:
       receivers: [ otlp ]
-      exporters: [ otlp ]
+      exporters: [ awsxray, otlp ]
