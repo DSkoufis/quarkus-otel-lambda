@@ -7,8 +7,6 @@ import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import org.jboss.logging.Logger;
-
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.context.Scope;
@@ -20,8 +18,6 @@ import io.opentelemetry.sdk.common.CompletableResultCode;
 import io.opentelemetry.semconv.ResourceAttributes;
 
 public abstract class AbstractHandler<I, O> implements RequestHandler<I, O> {
-
-  private static final Logger LOG = Logger.getLogger(AbstractHandler.class);
 
   private final OpenTelemetry openTelemetry;
   private final AwsLambdaFunctionInstrumenter instrumenter;
@@ -62,10 +58,6 @@ public abstract class AbstractHandler<I, O> implements RequestHandler<I, O> {
       instrumenter.end(otelContext, request, output, error);
 
       if (openTelemetry instanceof OpenTelemetrySdk sdk) {
-        /*
-         * Make sure that the tracer is flushed, because the Lambda runtime can terminate without any
-         * hooks to the Quarkus lifecycle. Flush method is available only to OpenTelemetrySdk
-         */
         CompletableResultCode completableResultCode = sdk.getSdkTracerProvider().forceFlush();
         completableResultCode.join(10, TimeUnit.SECONDS);
       }
@@ -77,7 +69,6 @@ public abstract class AbstractHandler<I, O> implements RequestHandler<I, O> {
         .setAttribute(ResourceAttributes.CLOUD_RESOURCE_ID, request.getAwsContext().getInvokedFunctionArn());
 
     if (isColdStart.getAndSet(false)) {
-      LOG.infov("Cold start for request {0}", request.getAwsContext().getInvokedFunctionArn());
       currentSpan.setAttribute(OTelConstants.IS_COLD_START, true);
     }
   }

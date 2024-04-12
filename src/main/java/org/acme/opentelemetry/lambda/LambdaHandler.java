@@ -25,7 +25,7 @@ public class LambdaHandler extends AbstractHandler<Request, Response> {
   public Response doHandleRequest(Request request, Context context) {
     service.sameSpan(context.getAwsRequestId());
 
-    service.startDifferentSpan("test arg", "test 2");
+    service.startDifferentSpan(context.getAwsRequestId(), "test 2");
 
     return new Response("ok");
   }

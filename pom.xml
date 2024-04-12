@@ -54,6 +54,16 @@
       <artifactId>opentelemetry-aws-xray-propagator</artifactId>
       <version>1.34.0-alpha</version>
     </dependency>
+
+    <!-- Rest -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-client-jackson</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
