@@ -16,6 +16,7 @@ target/
 *.lock.hcl
 tm-nonprod
 modules.tf
+ignored.tf
 *.tfstate
 
 ### Eclipse ###

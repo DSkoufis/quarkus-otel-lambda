@@ -1,0 +1,25 @@
+{
+  "Comment": "An example of the Amazon States Language",
+  "StartAt": "PassStateStart",
+  "TimeoutSeconds": 3600,
+  "States": {
+    "PassStateStart": {
+      "Type": "Pass",
+      "Next": "Log Input Event function"
+    },
+    "Log Input Event function": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "ResultPath": null,
+      "Parameters": {
+        "Payload.$": "$",
+        "FunctionName": "${lambda_name}"
+      },
+      "Next": "PassStateEnd"
+    },
+    "PassStateEnd": {
+      "Type": "Pass",
+      "End": true
+    }
+  }
+}
