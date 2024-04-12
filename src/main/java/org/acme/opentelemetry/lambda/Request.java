@@ -1,20 +1,29 @@
 package org.acme.opentelemetry.lambda;
 
+import java.util.Map;
+
 public class Request {
-  private String id;
+  private Map<String, String> val;
 
   public Request() {
   }
 
-  public Request(String id) {
-    this.id = id;
+  public Request(Map<String, String> val) {
+    this.val = val;
   }
 
-  public String getId() {
-    return id;
+  public Map<String, String> getVal() {
+    return val;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setVal(Map<String, String> val) {
+    this.val = val;
+  }
+
+  @Override
+  public String toString() {
+    return "Request{" +
+        "val=" + val +
+        '}';
   }
 }

@@ -15,14 +15,14 @@ public class LambdaService {
   @AddingSpanAttributes
   public void sameSpan(@SpanAttribute(value = "custom.arg") String requestId) {
     LOG.infof("Request ID: %s", requestId);
-    LOG.info(System.getenv());
-    LOG.info(System.getProperties());
+
+    LOG.debug(System.getenv());
+    LOG.infov("Trace header: {0}", System.getProperty("com.amazonaws.xray.traceHeader"));
   }
 
   @WithSpan
-  public String startDifferentSpan(@SpanAttribute(value = "custom.arg") String requestId,
-      @SpanAttribute(value = "test2") String test2) {
+  public void startDifferentSpan(@SpanAttribute(value = "custom.arg.1") String requestId,
+      @SpanAttribute(value = "custom.arg.2") String test2) {
     LOG.info("Here");
-    return "result";
   }
 }

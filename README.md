@@ -1,29 +1,11 @@
-The Quarkus app makes use of the [`quarkus-amazon-lambda`](https://quarkus.io/guides/aws-lambda) extension.
+The Quarkus app makes use of the [`quarkus-amazon-lambda`](https://quarkus.io/guides/aws-lambda) extension and tests the OTel support.
 
 The handler is: [`LambdaHandler`](src/main/java/org/acme/opentelemetry/lambda/LambdaHandler.java)
 
-To build the app:
+To build the app (in macOS):
 ```shell
-mvn clean package -Dnative -DskipUnitTests \
+mvn clean package -Dnative -DskipTests \
   -Dquarkus.native.container-build=true \
   -Dquarkus.native.builder-image=quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-17
 ```
-
-A terraform module is provided to build the lambda, although many variables are kept private as they are using private resources/modules. It should be
-easy to reconfigure and deploy the example. All missing variables are set as tf `locals`
-
-i.e:
-```txt
-- security_groups (lambda sg - vpc config)
-- subnets (lambda subnets - vpc config)
-
-Resource names, can be set to anything:
-- lambda_desc (lambda description)
-- lambda_name
-- sfn_name
-- sfn_role_name
-- lambda_role_name
-- sfn_policy_name
-- sfn_xray_policy_name
-- xray_policy_name
-```
+q
