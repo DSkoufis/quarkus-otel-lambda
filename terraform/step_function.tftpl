@@ -10,7 +10,6 @@
     "Log Input Event function": {
       "Type": "Task",
       "Resource": "arn:aws:states:::lambda:invoke",
-      "ResultPath": null,
       "Parameters": {
         "Payload.$": "$",
         "FunctionName": "${lambda_name}"
