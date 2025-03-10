@@ -17,7 +17,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <quarkus.platform.version>3.19.1</quarkus.platform.version>
+    <quarkus.platform.version>3.19.2</quarkus.platform.version>
   </properties>
 
   <dependencyManagement>
@@ -30,12 +30,12 @@
         <scope>import</scope>
       </dependency>
       <dependency>
-        <groupId>io.quarkus.platform</groupId>
-        <artifactId>quarkus-amazon-services-bom</artifactId>
-        <version>${quarkus.platform.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
+  <groupId>io.quarkiverse.amazonservices</groupId>
+  <artifactId>quarkus-amazon-services-bom</artifactId>
+  <version>3.3.0</version>
+  <type>pom</type>
+  <scope>import</scope>
+</dependency>
     </dependencies>
   </dependencyManagement>
 
